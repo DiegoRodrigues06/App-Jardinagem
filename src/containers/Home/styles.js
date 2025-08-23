@@ -5,22 +5,25 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #f5f5f5;
+  min-height: 100vh; 
+  padding: 1rem;
 `;
 
 const Header = styled.header`
+  background: linear-gradient(to bottom, #3aa032 0%, #71bf62 40%, #f5f5f5 100%);
+  height: 128px;
   width: 100%;
-  padding: 1rem 0;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
 `;
 
 const Title = styled.h1`
   font-family: "Jetbrains Mono", "Arial", sans-serif;
-  font-size: 2.5rem;
-  color: #333;
+  font-size: 2rem;
+  color: #fff;
 `;
 
 const Description = styled.p`
@@ -28,4 +31,4 @@ const Description = styled.p`
   color: #666;
 `;
 
-export { Container, Title, Description };
+export { Container, Title, Description, Header };

@@ -1,0 +1,12 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Jetbrains Mono", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background-color: #f5f5f5;
+  }
+`;
+
+export default GlobalStyle;
