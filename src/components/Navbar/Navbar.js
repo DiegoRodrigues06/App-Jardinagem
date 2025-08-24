@@ -1,22 +1,29 @@
 import styled from "styled-components";
 
 const NavbarContainer = styled.div`
-  width: 100%;
-  max-width: 100vw;  /* evita que ultrapasse a largura da tela */
-  background: #3aa032;
+  width: 15rem;
+  background: #121e0f;
   display: flex;
+  flex-direction: column;  /* Mudei para column */
   align-items: center;
-  justify-content: space-between; /* distribui melhor */
-  padding: 0 16px;
-  height: 64px;
+  padding: 1rem;
+  height: 99vh;
+  position: fixed;  /* Fixa na lateral */
+  left: 0;         /* Coloca na direita */
+  top: 0;
   color: #fff;
+  border-radius: 0;
+  margin: 0.3rem;
+  border-radius: 0.3rem;
   box-sizing: border-box;
+  overflow-y: auto;  /* Permite scroll se necessário */
 
   @media (max-width: 600px) {
-    flex-direction: column;
+    width: 100%;
     height: auto;
-    padding: 16px;
-    gap: 12px;
+    position: relative;
+    flex-direction: row;
+    padding: 1rem;
   }
 `;
 
@@ -25,40 +32,40 @@ const Logo = styled.div`
   border-radius: 50%;
   width: 64px;
   height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;  /* Espaço abaixo do logo */
+  
   img {
     max-width: 100%;
     max-height: 100%;
   }
-  font-weight: bold;
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  margin-right: 2rem;
-  margin-top: 1.5rem;
-  padding: 0.2rem;
 
   @media (max-width: 600px) {
-    margin-right: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
   }
 `;
 
 const NavLinks = styled.div`
   display: flex;
-  gap: 16px;
-  flex-wrap: wrap;  /* faz quebrar em vez de estourar */
+  flex-direction: column;  /* Coluna em vez de linha */
+  gap: 1rem;
   flex: 1;
-  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 2rem;
 
   @media (max-width: 600px) {
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 0;
   }
 `;
 
 const NavLink = styled.a`
   color: #fff;
-  text-decoration: none;
+  text-decoration: underline;
   font-size: clamp(0.9rem, 1.5vw, 1rem);
   cursor: pointer;
   &:hover {
@@ -66,20 +73,36 @@ const NavLink = styled.a`
   }
 `;
 
-const Button = styled.button`
-  background: #fff;
-  color: #3AA032;
-  border: none;
-  border-radius: 20px;
-  padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 24px);
-  font-weight: bold;
-  cursor: pointer;
-  margin-left: 1.5rem;
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  margin-top: auto;  /* Empurra para a base */
 
   @media (max-width: 600px) {
-    margin-left: 0;
-    margin-top: 0.5rem;
-    width: 100%;
+    flex-direction: row;
+    margin-top: 1rem;
+  }
+`;
+
+const Button = styled.button`
+  background: #fff;
+  color: #253c1f;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+
+  &:hover {
+    background: #e0e0e0;
+  }
+
+  @media (max-width: 600px) {
+    width: auto;
   }
 `;
 
@@ -89,5 +112,6 @@ export {
   Logo,
   NavLinks,
   NavLink,
-  Button
+  Button,
+  ButtonContainer
 }
