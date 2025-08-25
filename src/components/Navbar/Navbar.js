@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const NavbarContainer = styled.div`
   width: 15rem;
-  background: #121e0f;
+  background-image: url('/src/assets/grama.jpg');
   display: flex;
   flex-direction: column;  /* Mudei para column */
   align-items: center;
