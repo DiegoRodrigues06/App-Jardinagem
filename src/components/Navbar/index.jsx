@@ -11,12 +11,15 @@ function Navbar() {
           <img src={canabis} alt="maconha" />
         </Nav.Logo>
       </SecFunc>
-      <Nav.NavLinks>
-        <Link to="/"><Nav.NavLink>Home</Nav.NavLink></Link>
-        <Link to="/Documentation"><Nav.NavLink>Documentação</Nav.NavLink></Link>
-        <Link to="/Support"><Nav.NavLink>Support</Nav.NavLink></Link>
-        <a href="https://github.com/DiegoRodrigues06" target="_blank" rel="noopener noreferrer"><Nav.NavLink>Github</Nav.NavLink></a>
-      </Nav.NavLinks>
+      <Nav.ButtonNav>
+        <Link to="/">
+          <Nav.Button>Home
+          </Nav.Button>
+        </Link>
+        <Link to="/Documentation"><Nav.Button>Documentação</Nav.Button></Link>
+        <Link to="/Support"><Nav.Button>Support</Nav.Button>
+        </Link><a href="https://github.com/DiegoRodrigues06" target="_blank" rel="noopener noreferrer"><Nav.Button>Github</Nav.Button></a>
+      </Nav.ButtonNav>
       <Nav.ButtonContainer>
         <Link to="/Signup"><Nav.Button>Sign up</Nav.Button></Link>
         <Link to="/Login"><Nav.Button>Login</Nav.Button></Link>
@@ -25,5 +28,5 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Navbar;  
  
