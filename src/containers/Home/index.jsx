@@ -13,11 +13,11 @@ function Home() {
       <PageContainer>
         <MainContent>
           <Header>
-              <Title>Bem vindo ao App jardinagem muito brabo 2000</Title>
+              <Title>App Jardinagem</Title>
             </Header>
           <Container>   
             <CardContainer>
-              <Title>Planta 1</Title>
+              <Subtitle>Planta 1</Subtitle>
               <Description><img src={maisLogo} style={{ maxWidth: "100%", width: "60px", borderRadius: "8px" }} /></Description>
             </CardContainer>
           </Container>
@@ -28,7 +28,7 @@ function Home() {
 }
 
 export default Home;
-
+ 
 {/* <br></br>
 <Subtitle>Este site vai te transformar no maior jardineiro! (da sua casa.)</Subtitle>
 <Description>Aqui você pode gerar rotinas de cuidados para suas plantas.</Description>

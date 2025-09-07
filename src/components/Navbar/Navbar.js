@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-// Paleta de cores moderna e inspirada na natureza
 const colors = {
+  darkDarkBlue: "#010409",
   darkBlue: "#586875",
   lightBlue: "#a5c8ca",
   green: "#BDD6D2",
@@ -26,7 +26,7 @@ const NavbarContainer = styled.div`
   color: ${colors.darkGray};
   box-sizing: border-box;
   overflow-y: auto;
-  border-right: 1px solid ${colors.darkBlue}; /* Linha sutil */
+  border-right: 1px solid ${colors.lightGreen};
 
   @media (max-width: 600px) {
     width: 100%;
@@ -55,6 +55,19 @@ const Logo = styled.div`
 
   @media (max-width: 600px) {
     margin-bottom: 0;
+    margin-right: 1rem;
+  }
+`;
+ 
+const AltLogo = styled.div`
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-family: "Segoe Print";
+  color: ${colors.white};
+
+  @media (max-width: 600px) {
+    margin-top: 0;
     margin-right: 1rem;
   }
 `;
@@ -129,6 +142,7 @@ const Button = styled.button`
 export {
   NavbarContainer,
   Logo,
+  AltLogo,
   NavLinks,
   ButtonNav,
   Button,

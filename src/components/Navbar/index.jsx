@@ -1,16 +1,10 @@
 import { Link } from "react-router-dom"
 import * as Nav from "./Navbar"
-import canabis from "../../assets/canabis.png"
-import SecFunc from "../SecFunc";
 
 function Navbar() {
   return (
     <Nav.NavbarContainer>
-      <SecFunc>
-        <Nav.Logo>
-          <img src={canabis} alt="maconha" />
-        </Nav.Logo>
-      </SecFunc>
+      <Nav.AltLogo>Jardim Monstro</Nav.AltLogo> 
       <Nav.ButtonNav>
         <Link to="/">
           <Nav.Button>Home

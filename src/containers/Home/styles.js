@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 // Definição de cores para fácil manutenção
 const colors = {
+  darkDarkBlue: "#051229ff",
   darkBlue: "#586875",
   lightBlue: "#a5c8ca",
   green: "#BDD6D2",
@@ -19,7 +20,7 @@ const PageContainer = styled.div`
 `;
 
 const MainContent = styled.div`
-  margin-left: 13rem; 
+  margin-left: 15rem; 
   width: 100%;
 
   /* Quando a tela for menor que 600px, a navbar fica em cima */
@@ -40,11 +41,8 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  background: linear-gradient(
-    to bottom,
-    ${colors.green} 0%,
-    ${colors.lightGreen } 100%
-  ); /* Transição suave */
+  background-color: ${colors.darkDarkBlue};
+  background-opacity: 0.9;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -57,7 +55,7 @@ const Header = styled.header`
 const Title = styled.h1`
   font-family: "Poppins", sans-serif; /* Fonte moderna */
   font-size: 2.5rem;
-  color: ${colors.darkGray};
+  color: ${colors.white};
   margin: 0;
 `;
 
@@ -83,4 +81,4 @@ export {
    Header,
    MainContent,
   PageContainer
-  };
+  }; 
