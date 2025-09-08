@@ -26,7 +26,11 @@ const NavbarContainer = styled.div`
   color: ${colors.darkGray};
   box-sizing: border-box;
   overflow-y: auto;
-  border-right: 1px solid ${colors.lightGreen};
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 800px) {
+    transform: translateX(${props => (props.open ? '0' : '-100%')});
+    transition: transform 0.3s ease-in-out;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -34,6 +38,9 @@ const NavbarContainer = styled.div`
     position: relative;
     flex-direction: row;
     padding: 1rem;
+    transform: translateX(${props => (props.open ? '0' : '0rem')});
+    transition: transform 0s;
+
   }
 `;
 

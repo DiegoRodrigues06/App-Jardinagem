@@ -23,6 +23,11 @@ const MainContent = styled.div`
   margin-left: 15rem; 
   width: 100%;
 
+  @media (max-width: 800px) {
+    margin-left: 0;
+    transition: margin-left 0.25s ease-in-out;
+  }
+
   /* Quando a tela for menor que 600px, a navbar fica em cima */
   @media (max-width: 600px) {
     margin-left: 0; /* Remove a margem da esquerda */

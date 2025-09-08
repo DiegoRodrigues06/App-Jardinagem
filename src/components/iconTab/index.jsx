@@ -1,4 +1,4 @@
-import { MenuIcon, Bar } from "./TresBarras.js";
+import { MenuIcon, Bar } from "./IconTab.js";
 
 const Icon = ({ onClick }) => {
   return (

@@ -4,16 +4,19 @@ import { Container, Title, Subtitle, Description, Header, MainContent, PageConta
 import Navbar from "../../components/Navbar";
 import MyButton from "../../components/Button";
 import maisLogo from "../../assets/maisSimbolo.jpg";
+import planta from "../../assets/planta.png";
 
 
 function Home() {
   return (
     <>
-      <Navbar />
       <PageContainer>
         <MainContent>
           <Header>
-              <Title>App Jardinagem</Title>
+              <Title>
+                App Jardinagem 
+                <img src={planta} alt="logo planta" style={{ width: "40px", marginLeft: "1rem" }} />
+              </Title>
             </Header>
           <Container>   
             <CardContainer>

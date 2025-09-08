@@ -12,7 +12,7 @@ function Navbar() {
         </Link>
         <Link to="/Documentation"><Nav.Button>Documentação</Nav.Button></Link>
         <Link to="/Support"><Nav.Button>Support</Nav.Button>
-        </Link><a href="https://github.com/DiegoRodrigues06" target="_blank" rel="noopener noreferrer"><Nav.Button>Github</Nav.Button></a>
+        </Link><a href="https://github.com/DiegoRodrigues06/App-Jardinagem" target="_blank" rel="noopener noreferrer"><Nav.Button>Github</Nav.Button></a>
       </Nav.ButtonNav>
       <Nav.ButtonContainer>
         <Link to="/Signup"><Nav.Button>Sign up</Nav.Button></Link>
