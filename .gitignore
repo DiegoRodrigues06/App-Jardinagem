@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# apis, serviços e banco de dados
+services/
+src/db.js

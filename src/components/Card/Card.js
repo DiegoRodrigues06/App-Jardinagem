@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CardContainer = styled.div`
+const CardContainer = styled.button`
   /* Layout e espaçamento */
   display: flex;
   flex-direction: column;
@@ -17,9 +17,13 @@ const CardContainer = styled.div`
 
   /* Responsividade básica */
   width: 100%;
-  height: 200px;
+  min-height: 200px;
   max-width: 200px; /* Limita a largura em telas grandes para manter a legibilidade */
   
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
 
   @media (max-width: 600px) {
     padding: 1rem;

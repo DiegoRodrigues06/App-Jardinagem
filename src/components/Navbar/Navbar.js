@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const colors = {
   darkDarkBlue: "#010409",
@@ -73,10 +73,16 @@ const AltLogo = styled.div`
   font-family: "Segoe Print";
   color: ${colors.white};
 
+
   @media (max-width: 600px) {
-    margin-top: 0;
-    margin-right: 1rem;
-  }
+      font-size: 1.2rem;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-right: 1rem;
+      background-color: ${colors.darkBlue};
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+    }
 `;
 
 const NavLinks = styled.div`
@@ -117,6 +123,7 @@ const ButtonContainer = styled.div`
   @media (max-width: 600px) {
     flex-direction: row;
     margin-top: 1rem;
+    margin-left: 10px;
   }
 `;
 
@@ -131,6 +138,17 @@ const Button = styled.button`
   width: 100%;
   text-align: center;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 600px) {
+    background: ${colors.lightBlue};
+    box-shadow: none;
+    margin-left: 0.1rem;
+    padding: 0.5rem;
+      ${(props) =>
+        props.$hideButton && css`
+          display: none;
+        `}
+  }
 
   &:hover {
     background: ${colors.lightGreen};

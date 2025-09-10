@@ -1,8 +1,5 @@
-import { Link } from "react-router-dom";
 import CardContainer from "../../components/Card/Card";
 import { Container, Title, Subtitle, Description, Header, MainContent, PageContainer } from "./styles";
-import Navbar from "../../components/Navbar";
-import MyButton from "../../components/Button";
 import maisLogo from "../../assets/maisSimbolo.jpg";
 import planta from "../../assets/planta.png";
 

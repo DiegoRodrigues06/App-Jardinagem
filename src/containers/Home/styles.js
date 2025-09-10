@@ -22,6 +22,7 @@ const PageContainer = styled.div`
 const MainContent = styled.div`
   margin-left: 15rem; 
   width: 100%;
+  height: calc(100% - 10rem); /* Ajusta a altura para preencher a tela */
 
   @media (max-width: 800px) {
     margin-left: 0;
@@ -48,7 +49,7 @@ const Container = styled.div`
 const Header = styled.header`
   background-color: ${colors.darkDarkBlue};
   background-opacity: 0.9;
-  width: 100%;
+  width: calc(100% - 4rem); /* Ajusta a largura considerando a navbar */ 
   display: flex;
   flex-direction: column;
   align-items: center;
