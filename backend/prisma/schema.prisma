@@ -1,0 +1,65 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int         @id @default(autoincrement())
+  name      String
+  email     String      @unique
+  password  String
+  plantas   Planta[]
+  historico Historico[]
+  chats     ChatIA[] // <-- lado inverso do ChatIA
+}
+
+model Historico {
+  id      Int    @id @default(autoincrement())
+  message String
+  userId  Int
+  user    User   @relation(fields: [userId], references: [id])
+}
+
+model Planta {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  especieId Int?
+  especie   Especie? @relation(fields: [especieId], references: [id])
+  rotina    Rotina? // 1-1
+}
+
+model Especie {
+  id      Int      @id @default(autoincrement())
+  nome    String
+  plantas Planta[]
+}
+
+model Rotina {
+  id           Int           @id @default(autoincrement())
+  descricao    String
+  plantaId     Int           @unique // <-- precisa ser único pra ser 1-1
+  planta       Planta        @relation(fields: [plantaId], references: [id])
+  planejamento Planejamento?
+}
+
+model Planejamento {
+  id       Int    @id @default(autoincrement())
+  detalhes String
+  rotinaId Int    @unique // <-- também precisa ser único
+  rotina   Rotina @relation(fields: [rotinaId], references: [id])
+}
+
+model ChatIA {
+  id       Int      @id @default(autoincrement())
+  pergunta String
+  resposta String
+  userId   Int
+  user     User     @relation(fields: [userId], references: [id])
+  criadoEm DateTime @default(now())
+}

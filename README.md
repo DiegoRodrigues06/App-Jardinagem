@@ -8,7 +8,7 @@ utilizando a api do gemini, você poderá obter ajuda específica para problemas
 
 ### Tecnologias Utilizadas
 
-  * **Frontend**: React (`.jsx e styled-components`): Criando modulos e componentes para reutilização de código.
+  * **Frontend**: React (`.jsx`): Criando modulos e componentes para reutilização de código.
   * **Backend**: Node.js: Integrando com o banco de dados, mapeamento de métodos http e
   lógica geral de funcionamento.
   * **Banco de Dados:** PostgreSQL
