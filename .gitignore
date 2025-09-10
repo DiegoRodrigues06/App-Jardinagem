@@ -25,4 +25,5 @@ dist-ssr
 
 # apis, serviços e banco de dados
 services/
+backend/src/db.js
 db.js
