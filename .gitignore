@@ -27,3 +27,6 @@ dist-ssr
 services/
 backend/src/db.js
 db.js
+
+# Test 
+README.md
