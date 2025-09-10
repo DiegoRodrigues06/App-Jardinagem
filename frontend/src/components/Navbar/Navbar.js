@@ -44,6 +44,14 @@ const NavbarContainer = styled.div`
   }
 `;
 
+// const RegisterContainer = styled.div`
+//   background-color: ${colors.white};
+//   padding: 4rem 1rem;
+//   margin-bottom: -1.5rem;
+//   border-radius: 10px;
+//   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+// `;
+
 const Logo = styled.div`
   background-color: ${colors.white};
   border-radius: 50%;
@@ -118,12 +126,18 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   gap: 1rem;
   width: 100%;
+  padding: 2rem 0.5rem;
   margin-top: auto;
+  background-color: ${colors.white};
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
   @media (max-width: 600px) {
     flex-direction: row;
     margin-top: 1rem;
     margin-left: 10px;
+    background-color: ${colors.lightBlue};
+    box-shadow: none;
   }
 `;
 
@@ -155,8 +169,9 @@ const Button = styled.button`
     color: ${colors.darkGray};
   }
 
-  &:active {
-    background: #004d40;
+  &:focus {
+    background: ${colors.yellow};
+    color: ${colors.black};
   }
 
   @media (max-width: 600px) {
@@ -171,5 +186,5 @@ export {
   NavLinks,
   ButtonNav,
   Button,
-  ButtonContainer
+  ButtonContainer,
 };

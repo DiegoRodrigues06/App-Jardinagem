@@ -19,9 +19,11 @@ function Navbar() {
         </a>
 
       </Nav.ButtonNav>
-      <Nav.ButtonContainer>
-        <Link to="/Signup"><Nav.Button $hideButton>Sign up</Nav.Button></Link>
-        <Link to="/Login"><Nav.Button>Login</Nav.Button></Link>
+
+
+      <Nav.ButtonContainer>        
+        <Link to="/Register"><Nav.Button $hideButton>Sign up</Nav.Button></Link>
+        <Link to="/Login"><Nav.Button>Login</Nav.Button></Link>        
       </Nav.ButtonContainer>
     </Nav.NavbarContainer>
   );

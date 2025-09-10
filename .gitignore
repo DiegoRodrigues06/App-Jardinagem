@@ -24,7 +24,6 @@ dist-ssr
 *.sw?
 
 # apis, serviços e banco de dados
-services/
 backend/.env
 backend/node_modules
 backend/prisma
