@@ -25,5 +25,8 @@ dist-ssr
 
 # apis, serviços e banco de dados
 services/
-backend/src/db.js
-db.js
+backend/.env
+backend/node_modules
+backend/prisma
+
+
