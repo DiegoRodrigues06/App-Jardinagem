@@ -1,6 +1,6 @@
-import * as Log from "./Login.js";
+import * as Log from "./styles/Login.js";
 import { useState } from "react";
-import api from "../../services/api.js";
+import api from "../services/api.js";
 
 function Login() {
   const [email, setEmail] = useState("");

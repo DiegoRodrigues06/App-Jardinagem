@@ -1,4 +1,4 @@
-import { MenuIcon, Bar } from "./IconTab.js";
+import { MenuIcon, Bar } from "../assets/styles/IconTab";
 
 const Icon = ({ onClick }) => {
   return (
