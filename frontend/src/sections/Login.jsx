@@ -4,19 +4,19 @@ import api from "../services/api.js";
 
 function Login() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setSenha] = useState("");
   const [message, setMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/users/login", { email, password });
-      setMessage("Login OK! Bem-vindo " + res.data.user.name);
+      const res = await api.post("/users/login", { email, senha });
+      setMessage("Login OK! Bem-vindo " + res.data.user.nome);
     } catch (err) {
       setMessage(err.response?.data?.error || "Erro ao logar");
     }
   };
-
+  
   return (
     <Log.PageContainer>
       <Log.LoginBox>
@@ -33,8 +33,8 @@ function Login() {
           <Log.Input
             type="password"
             placeholder="Senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
           />
           <Log.Button type="submit">Entrar</Log.Button>
         </Log.Form>

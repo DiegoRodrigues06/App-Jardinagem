@@ -1,6 +1,18 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+export const colors = {
+  primary: "#c7e0be", // Azul principal
+  primaryDark: "#b4d6a9", // Azul para hover
+  background: "#a5c8ca",
+  background2: "#e3e5d7", // Fundo da página (cinza claro)
+  formBackground: "#ffffff", // Fundo do formulário (branco)
+  text: "#333333", // Cor principal do texto
+  textLight: "#7f8c8d", // Cor de texto sutil
+  border: "#bdc3c7", // Cor da borda
+  white: "#fff"
+};
+
 const AppContainer = styled.div`
   display: flex;
   width: 100%;
@@ -75,7 +87,7 @@ const LogoContainer = styled.div`
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #e2e8f0;
   margin-bottom: 1.5rem;
-  color: #4338ca;
+  color: ${colors.text};
 `;
 
 const LogoTitle = styled.h2`
@@ -104,12 +116,12 @@ const NavLink = styled(Link)`
 
   &:hover {
     background-color: #f1f5f9;
-    color: #4338ca;
+    color: ${colors.text};
   }
 
   &.active {
     background-color: #eef2ff;
-    color: #4338ca;
+    color: ${colors.text};
   }
 `;
 
@@ -131,13 +143,13 @@ const Button = styled.button`
   text-decoration: none;
   width: 100%;
   display: inline-block;
-  background-color: ${({ primary }) => (primary ? "#4338ca" : "white")};
-  color: ${({ primary }) => (primary ? "white" : "#4338ca")};
-  border: 1px solid ${({ primary }) => (primary ? "#4338ca" : "#cbd5e1")};
+  background-color: ${({ primary }) => (primary ? "#71acafff" : "white")};
+  color: ${({ primary }) => (primary ? "white" : "#71acafff")};
+  border: 1px solid ${({ primary }) => (primary ? "#71acafff" : "#cbd5e1")};
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background-color: ${({ primary }) => (primary ? "#3730a3" : "#f8fafc")};
+    background-color: ${({ primary }) => (primary ? "#5b8b8dff" : "#f8fafc")};
   }
 `;
 

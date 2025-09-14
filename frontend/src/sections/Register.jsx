@@ -1,22 +1,22 @@
-import * as Reg from "./Register.jsx";
+import * as Reg from "./styles/Register.js";
 import { useState } from "react";
 import api from "../services/api.js";
 
 function Register() {
-  const [name, setName] = useState("");
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setSenha] = useState("");
   const [message, setMessage] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const res = await api.post("/users/register", {
-        name,
+        nome,
         email,
-        password,
+        senha,
       });
-      setMessage("Usuário criado: " + res.data.name);
+      setMessage("Usuário criado: " + res.data.nome);
     } catch (err) {
       setMessage(err.response?.data?.error || "Erro ao registrar");
     }
@@ -32,8 +32,8 @@ function Register() {
           <Reg.Input
             type="text"
             placeholder="Nome"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
           />
           <Reg.Input
             type="email"
@@ -44,8 +44,8 @@ function Register() {
           <Reg.Input
             type="password"
             placeholder="Senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
           />
           <Reg.Button type="submit">Registrar</Reg.Button>
         </Reg.Form>

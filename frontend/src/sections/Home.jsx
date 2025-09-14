@@ -28,13 +28,13 @@ function Navbar({ isOpen }) {
       <Main.NavLinks>
 
         <Main.NavLink to="/" className="active"><HomeIcon /> Minhas Plantas</Main.NavLink>
-        <Main.NavLink to="/Documentation"><BookIcon /> Documentação</Main.NavLink>
-        <Main.NavLink to="/Support"><HelpIcon /> Suporte</Main.NavLink>
+        <Main.NavLink to="/documentation"><BookIcon /> Documentação</Main.NavLink>
+        <Main.NavLink to="/support"><HelpIcon /> Suporte</Main.NavLink>
         <Main.NavLink to="https://github.com/DiegoRodrigues06/App-Jardinagem" target="_blank"><GithubIcon /> Github</Main.NavLink>
         
       </Main.NavLinks>
       <Main.UserActions>
-        <Link to="/Register"><Main.Button>Sign up</Main.Button></Link>
+        <Link to="/register"><Main.Button>Sign up</Main.Button></Link>
         <Link to="/Login"><Main.Button primary>Login</Main.Button></Link>
       </Main.UserActions>
     </Main.NavbarContainer>
@@ -52,7 +52,7 @@ function App() {
         {isMenuOpen && <Main.Overlay onClick={toggleMenu} />}
         <Navbar isOpen={isMenuOpen} />
         <Main.MainContent>
-          <Plant />
+          <Plant></Plant>
         </Main.MainContent>
       </Main.AppContainer>
     </>

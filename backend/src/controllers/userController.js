@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs"; // para criptografar senha
 // Criar usuário (registro)
 export const createUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { nome, email, senha} = req.body;
 
     // já verifica se existe
     const existingUser = await prisma.user.findUnique({ where: { email } });
@@ -13,10 +13,10 @@ export const createUser = async (req, res) => {
     }
 
     // criptografar senha
-    const hashedPassword = await bcryptjs.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(senha, 10);
 
     const newUser = await prisma.user.create({
-      data: { name, email, password: hashedPassword },
+      data: { nome, email, senha: hashedPassword },
     });
 
     res.status(201).json(newUser);
@@ -39,12 +39,12 @@ export const getUsers = async (req, res) => {
 // Login
 export const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, senha } = req.body;
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) return res.status(404).json({ error: "Usuário não encontrado" });
 
-    const valid = await bcryptjs.compare(password, user.password);
+    const valid = await bcryptjs.compare(senha, user.senha);
     if (!valid) return res.status(401).json({ error: "Senha incorreta" });
 
     res.json({ message: "Login bem-sucedido", user });

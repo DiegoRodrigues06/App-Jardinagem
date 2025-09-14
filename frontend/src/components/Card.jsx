@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import * as Card from "../assets/styles/Card.js";
 
 function Plant() {
@@ -13,7 +15,7 @@ function Plant() {
     <>
       <Card.HomeHeader>
         <Card.HomeTitle>Minhas Plantas</Card.HomeTitle>
-        <Card.HomeButton>Adicionar Nova Planta</Card.HomeButton>
+        <Link to="/add-plant"><Card.HomeButton>Adicionar Nova Planta</Card.HomeButton></Link>
       </Card.HomeHeader>
       <Card.HomeGrid>
         {/* {plantData.map((plant) => (
@@ -25,7 +27,7 @@ function Plant() {
   );
 }
 
-function PlantCard({ name, description, imageUrl }) {
+export function PlantCard({ name, description, imageUrl }) {
   return (
     <Card.Card>
       <Card.CardImage src={imageUrl} alt={`Foto da planta ${name}`} />
@@ -38,12 +40,14 @@ function PlantCard({ name, description, imageUrl }) {
   );
 }
 
-function AddPlantCard() {
+export function AddPlantCard() {
   return (
-    <Card.Card className="add">
-      <div style={{ fontSize: "3rem" }}>+</div>
-      <p style={{ marginTop: "0.5rem", fontWeight: "500" }}>Adicionar Planta</p>
-    </Card.Card>
+    <Link to="/add-plant" style={{ textDecoration: "none" }}>
+      <Card.Card className="add">
+        <div style={{ fontSize: "3rem" }}>+</div>
+        <p style={{ marginTop: "0.5rem", fontWeight: "500" }}>Adicionar Planta</p>
+      </Card.Card>
+    </Link>
   );
 }
 

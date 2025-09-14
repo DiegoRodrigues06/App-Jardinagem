@@ -8,21 +8,19 @@ import Navbar from '../sections/Home.jsx';
 import Home from "../sections/Home";
 import Login from "../sections/Login";
 import Register from "../sections/Register";
+import AddPlant from "../sections/AddPlant.jsx";
 
 
 const Layout = ({ children }) => {
-  const [menuOpen, setMenuOpen] = useState(true);
-
-  const handleMenuClick = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <>
-      <Icon onClick={handleMenuClick} />
+      <Icon onClick={toggleMenu} />
 
-      <Navbar open={menuOpen}></Navbar>
-      
+      <Navbar open={isMenuOpen}></Navbar>
+
       {children}
     </>
   );
@@ -34,11 +32,12 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Layout><Home /></Layout>} />
       <Route path="/login" element={<Login />} />
-      <Route path="/Register" element={<Register />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/add-plant" element={<AddPlant />} />
     </Routes>
   );
 }
-
+ 
 
 
 export default AppRoutes;

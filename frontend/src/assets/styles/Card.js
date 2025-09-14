@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const colors = {
+  primary: "#c7e0be", // Azul principal
+  primaryDark: "#b4d6a9", // Azul para hover
+  background: "#a5c8ca",
+  background2: "#e3e5d7", // Fundo da página (cinza claro)
+  formBackground: "#ffffff", // Fundo do formulário (branco)
+  text: "#333333", // Cor principal do texto
+  textLight: "#7f8c8d", // Cor de texto sutil
+  border: "#bdc3c7", // Cor da borda
+  white: "#fff"
+};
+
 // ----------------- CARD -----------------
 const Card = styled.div`
   background-color: #ffffff;
@@ -27,8 +39,8 @@ const Card = styled.div`
     text-align: center;
 
     &:hover {
-      border-color: #6366f1;
-      color: #6366f1;
+      border-color: ${colors.primary};
+      color: ${colors.text};
       background-color: #f8fafc;
     }
   }
@@ -106,13 +118,14 @@ const HomeButton = styled.button`
   border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
-  background-color: #4338ca;
+  background-color: ${colors.text};
   color: white;
-  border: 1px solid #4338ca;
+  border: 1px solid: ${colors.text};
   font-family: 'Poppins', sans-serif;
 
   &:hover {
-    background-color: #3730a3;
+    background-color: #5f6969ff;
+    transition: background-color 0.5s ease;;
   }
 
   @media (min-width: 640px) {
