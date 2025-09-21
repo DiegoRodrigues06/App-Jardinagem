@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const colors = {
-  primary: "#c7e0be", // Azul principal
-  primaryDark: "#b4d6a9", // Azul para hover
+  primary: "#c7e0be", 
+  primaryDark: "#b4d6a9", 
   background: "#a5c8ca",
-  background2: "#e3e5d7", // Fundo da página (cinza claro)
-  formBackground: "#ffffff", // Fundo do formulário (branco)
-  text: "#333333", // Cor principal do texto
-  textLight: "#7f8c8d", // Cor de texto sutil
-  border: "#bdc3c7", // Cor da borda
+  background2: "#e3e5d7", 
+  formBackground: "#ffffff", 
+  text: "#333333", 
+  textLight: "#7f8c8d", 
+  border: "#bdc3c7", 
   white: "#fff"
 };
 

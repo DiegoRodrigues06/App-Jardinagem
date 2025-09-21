@@ -8,7 +8,7 @@ import Navbar from '../sections/Home.jsx';
 import Home from "../sections/Home";
 import Login from "../sections/Login";
 import Register from "../sections/Register";
-import AddPlant from "../sections/AddPlant.jsx";
+import AddPlant from "../sections/Add-Plant.jsx";
 
 
 const Layout = ({ children }) => {
@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Layout><Home /></Layout>} />
+      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/add-plant" element={<AddPlant />} />

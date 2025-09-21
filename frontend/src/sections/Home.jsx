@@ -41,7 +41,7 @@ function Navbar({ isOpen }) {
   );
 }
 
-function App() {
+function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -59,4 +59,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
