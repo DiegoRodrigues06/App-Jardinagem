@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { getEspecies } from "../controllers/especieController.js";
+import { getEspecies, getEspeciesByName } from "../controllers/especieController.js";
 
 const router = Router();
 
-router.get("/", getEspecies);  
-router.get("/:id", getEspecies);    
-// listar espécies     
+router.get("/", getEspecies);   
+// listar espécies
+router.get("/search", getEspeciesByName);   
+// buscar espécies por nome
 export default router;
