@@ -8,14 +8,21 @@ function Login() {
   const [message, setMessage] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await api.post("/users/login", { email, senha });
-      setMessage("Login OK! Bem-vindo " + res.data.user.nome);
-    } catch (err) {
-      setMessage(err.response?.data?.error || "Erro ao logar");
-    }
-  };
+  e.preventDefault();
+  try {
+    const res = await api.post("/users/login", { email, senha });
+
+    // salvar token no localStorage
+    localStorage.setItem("token", res.data.token);
+
+    // opcional: salvar também os dados do user
+    localStorage.setItem("user", JSON.stringify(res.data.user));
+
+    setMessage("Login OK! Bem-vindo " + res.data.user.nome);
+  } catch (err) {
+    setMessage(err.response?.data?.error || "Erro ao logar");
+  }
+};
   
   return (
     <Log.PageContainer>

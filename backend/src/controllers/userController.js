@@ -1,5 +1,8 @@
 import prisma from "../db.js";
 import bcryptjs from "bcryptjs"; // para criptografar senha
+import jwt from "jsonwebtoken"; // para criar tokens
+
+const SECRET_KEY = process.env.JWT_SECRET;
 
 // Criar usuário (registro)
 export const createUser = async (req, res) => {
@@ -47,7 +50,13 @@ export const loginUser = async (req, res) => {
     const valid = await bcryptjs.compare(senha, user.senha);
     if (!valid) return res.status(401).json({ error: "Senha incorreta" });
 
-    res.json({ message: "Login bem-sucedido", user });
+    const token = jwt.sign({id: user.id, email: user.email}, SECRET_KEY, { expiresIn: '7d' })
+
+    res.json({
+      message: "Login bem-sucedido", 
+      token, 
+      user: { id: user.id, nome: user.nome, email: user.email }
+    });
   } catch (err) {
     res.status(500).json({ error: "Erro no servidor" });
   }

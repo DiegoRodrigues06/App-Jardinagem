@@ -30,6 +30,7 @@ model Planta {
   id        Int       @id @default(autoincrement())
   apelido   String?   // tipo "Rosa da varanda"
   criadoEm  DateTime  @default(now())
+  ambiente  String
   userId    Int
   user      User      @relation(fields: [userId], references: [id])
   especieId Int
@@ -39,9 +40,9 @@ model Planta {
 
 model Rotina {
   id        Int      @id @default(autoincrement())
-  descricao String?  // tipo "Regar 2x por semana"
-  frequencia String? // "2x/semana"
-  horario   String?  // "8h da manhã"
+  descricao String?  
+  frequencia String? 
+  horario   String?  
   plantaId  Int
   planta    Planta   @relation(fields: [plantaId], references: [id])
 }
