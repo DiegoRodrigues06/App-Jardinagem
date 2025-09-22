@@ -24,6 +24,7 @@ model Especie {
   cuidados  String?   // infos fixas que você guarda na sua própria API
   imagem    String?   // guardar imagem por url
   plantas   Planta[]
+  rotinas   Rotina[]  // <- cada espécie terá várias rotinas (interno, externo)
 }
 
 model Planta {
@@ -35,16 +36,16 @@ model Planta {
   user      User      @relation(fields: [userId], references: [id])
   especieId Int
   especie   Especie   @relation(fields: [especieId], references: [id])
-  rotinas   Rotina[]
 }
 
 model Rotina {
-  id        Int      @id @default(autoincrement())
-  descricao String?  
+  id         Int      @id @default(autoincrement())
+  descricao  String?  
   frequencia String? 
-  horario   String?  
-  plantaId  Int
-  planta    Planta   @relation(fields: [plantaId], references: [id])
+  horario    String?  
+  ambiente   String   // "interno" ou "externo"
+  especieId  Int
+  especie    Especie  @relation(fields: [especieId], references: [id])
 }
 
 model ChatIA {
