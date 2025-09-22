@@ -11,7 +11,7 @@ utilizando a api do gemini, você poderá obter ajuda específica para problemas
   * **Frontend**: React (`.jsx`): Criando modulos e componentes para reutilização de código.
   * **Backend**: Node.js: Integrando com o banco de dados, mapeamento de métodos http e
   lógica geral de funcionamento.
-  * **Banco de Dados:** PostgreSQL
+  * **Banco de Dados:** SQLite
   * **Ambiente de Desenvolvimento:** Visual Studio Code
 
 
@@ -24,6 +24,5 @@ utilizando a api do gemini, você poderá obter ajuda específica para problemas
   * mude o diretorio de um para o frontend e rode `npm i vite`
   * e depois mude para o backend e rode `npm i prisma`
   * ainda no diretorio do backend rode `npx prisma migrate dev --name init`
-  * e por fim em cada um dos terminais (com diretorio de backend e frontend)
-    rode `npm run dev`. isso iniciara o servidor local nos 2
+  * e por fim volte pro diretório raiz e rode `npm run all`
 
