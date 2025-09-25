@@ -9,23 +9,23 @@ export const getEspecies = async (req, res) => {
   }
 };
 
-// listar todas ou buscar por nome via query
+// listar todas ou buscar por nome via query.
 export const getEspeciesByName = async (req, res) => {
-  console.log("Query parameters:", req.query); // log dos parâmetros de consulta
+  console.log("Parametros de pesquisa:", req.query); // log dos parâmetros de consulta
 
-  const { nome } = req.query; // pega ?nome=xxx da URL
+  const { nome } = req.query; 
   try {
     let especies;
 
-    if (nome && nome.trim() !== "") {
+    if (nome && nome.trim() !== "") { // se o nome foi fornecido e n for vazio volta todos os resultados que contenham o nome
       especies = await prisma.especie.findMany({
         where: {
           nome: {
-            contains: nome,       // busca parcial
+            contains: nome,      
           },
         },
       });
-    } else {
+    } else { // se n for fornecido nome, volta todas as espécies
       especies = await prisma.especie.findMany();
     }
 

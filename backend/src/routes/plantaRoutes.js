@@ -4,6 +4,6 @@ import { authMiddleware } from "../controllers/middleware/auth.js";
 
 const router = express.Router();
 
-router.post("/", authMiddleware, addPlantaUsuario);
+router.post("/", authMiddleware, addPlantaUsuario); // rota protegida, só acessível com token válido
 
 export default router;

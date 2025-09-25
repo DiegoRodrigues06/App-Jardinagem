@@ -1,7 +1,9 @@
-import express from "express";
-import path from "path";
-import cors from "cors";
-import dotenv from "dotenv";
+import express from "express"; // framework web, para criar o servidor
+import path from "path"; // para lidar com caminhos de arquivos
+import cors from "cors"; // para permitir requisições de outros domínios
+import dotenv from "dotenv"; // para criar variáveis de ambiente
+dotenv.config(); // carrega as variáveis de ambiente do arquivo .env
+
 import userRoutes from "./routes/userRoutes.js";
 import especieRoutes from "./routes/especieRoutes.js";
 import plantaRoutes from "./routes/plantaRoutes.js";
@@ -9,8 +11,6 @@ import plantaRoutes from "./routes/plantaRoutes.js";
 import { dirname } from "path"; // serve para servir imagens estáticas
 import { fileURLToPath } from "url"; // serve para encontrar o diretório atual
 
-
-dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();

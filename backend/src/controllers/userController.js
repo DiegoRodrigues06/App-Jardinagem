@@ -1,21 +1,26 @@
 import prisma from "../db.js";
 import bcryptjs from "bcryptjs"; // para criptografar senha
+import validator from "validator"; // para validar ( email )
 import jwt from "jsonwebtoken"; // para criar tokens
 
-const SECRET_KEY = process.env.JWT_SECRET;
 
 // Criar usuário (registro)
 export const createUser = async (req, res) => {
   try {
     const { nome, email, senha} = req.body;
 
-    // já verifica se existe
+    // verifica se o email tem formato válido
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ error: "Email inválido" });
+    }
+
+    // verifica se o email ja foi cadastrado no banco
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ error: "Email já registrado." });
     }
 
-    // criptografar senha
+    // criptografa a senha
     const hashedPassword = await bcryptjs.hash(senha, 10);
 
     const newUser = await prisma.user.create({
@@ -25,7 +30,7 @@ export const createUser = async (req, res) => {
     res.status(201).json(newUser);
   } catch (err) {
     console.error("Erro ao criar usuário:", err);
-    res.status(500).json({ error: "Erro no servidor" });
+    res.status(500).json({ error: "Erro ao criar usuário" });
   }
 };
 
@@ -35,22 +40,24 @@ export const getUsers = async (req, res) => {
     const users = await prisma.user.findMany();
     res.json(users);
   } catch (err) {
-    res.status(500).json({ error: "Erro no servidor" });
+    res.status(500).json({ error: "Erro ao buscar usuários" });
   }
 };
 
 // Login
 export const loginUser = async (req, res) => {
   try {
+    const SECRET_KEY = process.env.JWT_SECRET;
     const { email, senha } = req.body;
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.findUnique({ where: { email } }); //tenta achar o usuário pelo email
 
     if (!user) return res.status(404).json({ error: "Usuário não encontrado" });
 
-    const valid = await bcryptjs.compare(senha, user.senha);
+    const valid = await bcryptjs.compare(senha, user.senha); // compara a senha dada com a criptografada
     if (!valid) return res.status(401).json({ error: "Senha incorreta" });
 
     const token = jwt.sign({id: user.id, email: user.email}, SECRET_KEY, { expiresIn: '7d' })
+     // cria o token com id e email do usuário no local storage, valido por 7 dias
 
     res.json({
       message: "Login bem-sucedido", 
@@ -58,6 +65,6 @@ export const loginUser = async (req, res) => {
       user: { id: user.id, nome: user.nome, email: user.email }
     });
   } catch (err) {
-    res.status(500).json({ error: "Erro no servidor" });
+    res.status(500).json({ error: "Erro ao fazer login" });
   }
 };

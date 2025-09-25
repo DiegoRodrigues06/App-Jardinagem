@@ -2,18 +2,18 @@ import prisma from "../db.js";
 
 export const addPlantaUsuario = async (req, res) => {
   try {
-    const { especieId, apelido, ambiente } = req.body;
+    const { especieId, apelido, ambiente } = req.body; // dados da planta vindo do corpo da requisição
 
-    if (!especieId) {
+    if (!especieId || !ambiente) { // apelido é opcional
       return res.status(400).json({ error: "Dados insuficientes" });
     }
 
-    const planta = await prisma.planta.create({
+    const planta = await prisma.planta.create({ // cria uma nova "planta" no banco
       data: {
         apelido,
         ambiente,
-        userId: req.user.id,  // vem do token via authMiddleware
-        especieId: especieId, // usa direto
+        userId: req.user.id,  // vem do token pelo authMiddleware
+        especieId: especieId,
       },
     });
 

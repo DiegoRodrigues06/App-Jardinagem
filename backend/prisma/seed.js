@@ -1,3 +1,5 @@
+// faz os inserts no banco de dados assim que eu der migrate no banco
+
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
@@ -29,8 +31,7 @@ async function main() {
   });
 
   const especies = await prisma.especie.findMany();
-
-  // 🔥 Aqui usamos objeto JS normal (sem Record)
+  // Inserindo rotinas
   const rotinas = {
     Rosa: {
       interno: { frequencia: "3x por semana", horario: "Manhã" },
