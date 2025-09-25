@@ -2,6 +2,7 @@
 import * as Add from "./styles/Add-Plant"
 import { useState, useEffect, useRef } from "react"
 import api from "../services/api.js"
+import { Navigate, useNavigate } from "react-router-dom"
 
 import Navbar from "../components/Navbar"
 import SearchBar, { ResultsBox, ResultItem } from "../components/SearchBar.jsx"
@@ -13,8 +14,10 @@ export default function AddPlant() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [plantas, setPlantas] = useState([]); 
+  const [plantaSelecionada, setPlantaSelecionada] = useState(null);
   const [especieId, setEspecieId] = useState(null); // guarda id da espécie selecionada
 
+  const navigate = useNavigate(); // direcionar para outras paginas
   const ignorarBuscaInit = useRef(false); 
   const ignorarBuscaEnd = () => {
     ignorarBuscaInit.current = true;
@@ -36,6 +39,7 @@ export default function AddPlant() {
       .then((response) => {
         setPlantas(response.data);
         setLoading(false);
+        console.log("Plantas encontradas:", response.data);
       })
       .catch((error) => {
         console.error("Erro ao buscar plantas:", error); // vai retornar erro se der problema na api
@@ -53,7 +57,16 @@ export default function AddPlant() {
       setPlantas([]);
       setEspecieId(null); // limpa o id se apagar
     }
-  }, [busca]);
+
+    // ---- função que redireciona para a pagina principal em caso de sucesso ----
+    if (message === "Planta cadastrada com sucesso!") {
+    const timeout = setTimeout(() => {
+      navigate('/');
+    }, 2000); // 2 segundos de delay
+
+    return () => clearTimeout(timeout); // limpeza
+  }
+  }, [busca, message, navigate]);
 
 
   // --- função de formulário ---
@@ -117,6 +130,8 @@ export default function AddPlant() {
     setBusca(planta.nome); // mostra nome da planta no campo de busca
     setEspecieId(planta.id); // salva id da espécie
     setPlantas([]); // limpa resultados
+    setPlantaSelecionada(planta); 
+    // sos dados da planta (to usando pra salvar qual imagem deve ser mostrada)
   };
 
   return (
@@ -170,7 +185,15 @@ export default function AddPlant() {
 
         
         <Add.EndContainer>
-          <Add.ImageContainer> Img </Add.ImageContainer>
+            {plantaSelecionada &&(
+              <Add.ImageContainer> 
+                <img
+                  src={`http://localhost:3001/api${plantaSelecionada.imagem}`}
+                  alt={`Imagem da planta ${plantaSelecionada.nome}`}
+                  style={{ maxWidth: "198px", minWidth: "198px", maxHeight: "223px", minHeight: "223px", borderRadius: "2px"}}
+                />
+              </Add.ImageContainer>
+            )} 
           <Add.ButtonContainer
             type="submit"
             style={{ alignItems: "right", justifyContent: "right" }}

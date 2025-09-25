@@ -87,6 +87,7 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s;
+  margin-right: 9rem;
 
   &:hover {
     color: ${colors.text};

@@ -1,11 +1,13 @@
 import * as Log from "./styles/Login.js";
 import { useState } from "react";
 import api from "../services/api.js";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
   e.preventDefault(); // previne o reload da pag sempre que clico no botao
@@ -23,6 +25,9 @@ function Login() {
     localStorage.setItem("user", JSON.stringify(res.data.user));
 
     setMessage("Login OK! Bem-vindo " + res.data.user.nome);
+
+    navigate("/"); // redireciona para home apos login
+
   } catch (err) {
     setMessage(err.response?.data?.error || "Erro ao logar");
   }
@@ -33,7 +38,7 @@ function Login() {
       <Log.LoginBox>
         <Log.Title>Login</Log.Title>
 
-        {/* Formulário de login */}
+        
         <Log.Form onSubmit={handleLogin}>
           <Log.Input
             type="email"
@@ -50,12 +55,13 @@ function Login() {
           <Log.Button type="submit">Entrar</Log.Button>
         </Log.Form>
 
-
-        {/* Mensagem de resposta */}
+   
         {message && <p style={{ marginTop: "15px" }}>{message}</p>}
 
-        {/* Link para voltar à Início */}
-        <Log.StyledLink to="/">VOLTAR</Log.StyledLink>
+        <div>
+          <Log.StyledLink to="/register" style={{position: "absolute",marginLeft: "90px"}}>Já tem uma conta?</Log.StyledLink>
+          <Log.StyledLink to="/">VOLTAR</Log.StyledLink>
+        </div>
       </Log.LoginBox>
     </Log.PageContainer>
   );

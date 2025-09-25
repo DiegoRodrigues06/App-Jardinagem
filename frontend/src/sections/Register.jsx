@@ -1,12 +1,14 @@
 import * as Reg from "./styles/Register.js";
 import { useState } from "react";
 import api from "../services/api.js";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -21,6 +23,8 @@ function Register() {
         senha,
       });
       setMessage("Usuário criado: " + res.data.nome);
+      navigate("/login");
+
     } catch (err) {
       setMessage(err.response?.data?.error || "Erro ao registrar");
     }
