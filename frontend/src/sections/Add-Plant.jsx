@@ -1,6 +1,6 @@
 // src/pages/AddPlant.jsx
 import * as Add from "./styles/Add-Plant"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import api from "../services/api.js"
 
 import Navbar from "../components/Navbar"
@@ -9,14 +9,27 @@ import SearchBar, { ResultsBox, ResultItem } from "../components/SearchBar.jsx"
 export default function AddPlant() {
   const [busca, setBusca] = useState("");
   const [apelido, setApelido] = useState("");
-  const [ambiente, setAmbiente] = useState("interno");
+  const [ambiente, setAmbiente] = useState("interno"); // padrão sendo interno
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [plantas, setPlantas] = useState([]); 
-  const [especieId, setEspecieId] = useState(null); // 👈 guarda id da espécie selecionada
+  const [especieId, setEspecieId] = useState(null); // guarda id da espécie selecionada
 
-  // --- BUSCA COM DEBOUNCE ---
+  const ignorarBuscaInit = useRef(false); 
+  const ignorarBuscaEnd = () => {
+    ignorarBuscaInit.current = true;
+  };
+  // função para ignorar ignorar a chamada a api apos uma planta ser selecionada
+
+
+  // --- função de busca com debounce ---
+  // faz busca na api com um pequeno delay pra não sobrecarregar o servidor
   const debouncedSearch = (busca) => {
+    if (ignorarBuscaInit.current) {
+      ignorarBuscaInit.current = false; // reseta depois de ignorar uma vez
+      return;
+  
+    }
     setLoading(true);
     api
       .get(`/api/especies/search?nome=${busca}`)
@@ -25,44 +38,57 @@ export default function AddPlant() {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Erro ao buscar plantas:", error);
+        console.error("Erro ao buscar plantas:", error); // vai retornar erro se der problema na api
         setLoading(false);
       });
   };
 
   useEffect(() => {
     if (busca.trim().length > 0) {
-      const timeoutId = setTimeout(() => {
+      const timeoutId = setTimeout(() => { // aplica o delay (500ms) se tiver algum caractere em busca
         debouncedSearch(busca);
       }, 500);
       return () => clearTimeout(timeoutId);
     } else {
       setPlantas([]);
-      setEspecieId(null); // limpa se apagar
+      setEspecieId(null); // limpa o id se apagar
     }
   }, [busca]);
 
-  // --- ENVIO DO FORM ---
-  const handleGenerateRoutine = async (event) => {
-    event.preventDefault();
 
-    if (!apelido || !ambiente || !especieId) {
-      setMessage("Preencha todos os campos e selecione uma planta.");
+  // --- função de formulário ---
+  const handleGenerateRoutine = async (event) => {
+    event.preventDefault(); // previne o reload da página
+
+    const camposFaltando = [];
+
+    if (!ambiente) camposFaltando.push("Ambiente");
+    if (!especieId) camposFaltando.push("Espécie");
+    if (camposFaltando.length > 0) { // se tiver algum campo obrigatorio em branco ele vai dizer qual é
+      setMessage(`Preencha os campos obrigatórios: ${camposFaltando.join(", ")}`);
       return;
     }
 
     const formData = {
       apelido,
       ambiente,
-      especieId, // 👈 backend espera esse campo
+      especieId,
     };
 
     try {
-      const token = localStorage.getItem("token"); // pega token salvo no login
+      const token = localStorage.getItem("token"); // pega token que foi salvo na função login
+      
+      if (!token) {
+        setMessage("Você precisa estar logado.");
+        console.error("Token não encontrado.");
+        return; // se n tiver token, n faz a requisição
+      }
+
       const res = await api.post("/api/plantas", formData, {
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`, 
+          // envia o token no cabeçalho da requisição para que seja analizada primeiro antes de salvar a planta
+        }
       });
 
       setMessage("Planta cadastrada com sucesso!");
@@ -74,20 +100,23 @@ export default function AddPlant() {
       setEspecieId(null);
 
     } catch (err) {
-  console.error("Erro ao gerar rotina:", {
-    status: err.response?.status,
-    data: err.response?.data,
-    message: err.message
-  });
-  setMessage("Erro ao salvar planta.");
-}
+      console.error("Erro ao gerar rotina:", {
+        status: err.response?.status,
+        data: err.response?.data,
+        message: err.message
+      });
+      setMessage("Erro ao gerar rotina.");
+    }
 
   };
 
-  // --- SELEÇÃO DE PLANTA ---
+
+  // --- função ao selecionar planta ---
   const handleSelect = (planta) => {
-    setBusca(planta.nome);
+    ignorarBuscaEnd(); // ignora a próxima busca automática
+    setBusca(planta.nome); // mostra nome da planta no campo de busca
     setEspecieId(planta.id); // salva id da espécie
+    setPlantas([]); // limpa resultados
   };
 
   return (
@@ -98,7 +127,7 @@ export default function AddPlant() {
           <Add.Title>O que você gostaria de plantar?</Add.Title>
         </Add.Header>
 
-        {/* Barra de busca */}
+        
         <SearchBar value={busca} onChange={(e) => setBusca(e.target.value)} />
         {busca.trim() !== "" && plantas.length > 0 && !loading && (
           <ResultsBox>
@@ -113,7 +142,7 @@ export default function AddPlant() {
           </ResultsBox>
         )}
 
-        {/* Campo Apelido */}
+        
         <Add.Label>
           <Add.RadioInput type="radio" name="nickname" value="nickname" />
           Apelido
@@ -125,7 +154,7 @@ export default function AddPlant() {
           onChange={(e) => setApelido(e.target.value)}
         />
 
-        {/* Ambiente */}
+        
         <Add.Title
           style={{ marginTop: "1rem", fontSize: "1.25rem", textAlign: "left" }}
         >
@@ -139,7 +168,7 @@ export default function AddPlant() {
           </Add.Options>
         </Add.Title>
 
-        {/* Botão */}
+        
         <Add.EndContainer>
           <Add.ImageContainer> Img </Add.ImageContainer>
           <Add.ButtonContainer
@@ -149,7 +178,7 @@ export default function AddPlant() {
             Gerar Rotina
           </Add.ButtonContainer>
 
-          {/* Mensagem */}
+          
           {message && (
             <p
               style={{

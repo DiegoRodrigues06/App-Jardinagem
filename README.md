@@ -24,5 +24,5 @@ utilizando a api do gemini, você poderá obter ajuda específica para problemas
   * mude o diretorio de um para o frontend e rode `npm i vite`
   * e depois mude para o backend e rode `npm i prisma`
   * ainda no diretorio do backend rode `npx prisma migrate dev --name init`
-  * e por fim volte pro diretório raiz e rode `npm run all`
+  * e por fim rode `npm run dev` nos dois diretórios
 

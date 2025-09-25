@@ -11,6 +11,7 @@ import Register from "../sections/Register";
 import AddPlant from "../sections/Add-Plant.jsx";
 
 
+// muitos problemas nisso aq kkk, tentando arrumar
 const Layout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);

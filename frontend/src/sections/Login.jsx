@@ -8,7 +8,11 @@ function Login() {
   const [message, setMessage] = useState("");
 
   const handleLogin = async (e) => {
-  e.preventDefault();
+  e.preventDefault(); // previne o reload da pag sempre que clico no botao
+  if (!email || !senha) {
+    setMessage("Por favor, preencha todos os campos.");
+    return;
+  }
   try {
     const res = await api.post("/users/login", { email, senha });
 

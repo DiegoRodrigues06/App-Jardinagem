@@ -10,6 +10,10 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (!nome || !email || !senha) {
+    setMessage("Por favor, preencha todos os campos.");
+    return;
+  }
     try {
       const res = await api.post("/users/register", {
         nome,
