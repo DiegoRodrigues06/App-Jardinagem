@@ -23,3 +23,22 @@ export const addPlantaUsuario = async (req, res) => {
     res.status(500).json({ error: "Erro ao salvar planta", detalhes: err.message });
   }
 };
+
+
+export const getPlantasUsuario = async (req, res) => {
+  try {
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ error: "Usuário não autenticado" });
+    }
+    const plantas = await prisma.planta.findMany({
+      where: {
+        userId: req.user.id,
+      },
+    });
+
+    res.json(plantas);
+  } catch (err) {
+    console.error("Erro ao buscar plantas:", err);
+    res.status(500).json({ error: "Erro ao buscar plantas", detalhes: err.message });
+  }
+};

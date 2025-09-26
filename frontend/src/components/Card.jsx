@@ -1,15 +1,54 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import api from "../services/api.js"; 
 
 import * as Card from "../assets/styles/Card.js";
 
-function Plant() {
-//   const plantData = [
-//     { name: "Monstera Deliciosa", description: "Também conhecida como Costela-de-Adão, famosa por suas folhas grandes e recortadas.", imageUrl: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=800&q=80" },
-//     { name: "Jiboia (Epipremnum)", description: "Uma planta trepadeira muito resistente e fácil de cuidar, ideal para iniciantes.", imageUrl: "https://images.unsplash.com/photo-1600478822695-17d46a83691b?auto=format&fit=crop&w=800&q=80" },
-//     { name: "Zamioculca", description: "Extremamente durável e tolera pouca luz e pouca água. Suas folhas brilhantes são únicas.", imageUrl: "https://images.unsplash.com/photo-1614555138126-252d62550130?auto=format&fit=crop&w=800&q=80" },
-//   ];
 
-//essa parte será substituída por dados dinâmicos via minha propria API
+function Plant() {
+
+  const [plantas, setPlantas] = useState([]); 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+  const fetchPlantas = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.warn("Token não encontrado.");
+        setLoading(false);
+        return;
+      }
+
+      // Configura o header de autorização para as próximas requisições
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+      const response = await api.get("/api/plantas/my-plants");
+
+      setPlantas(response.data);
+      setLoading(false);
+
+      if (response.data.length === 0) {
+        console.log("Nenhuma planta encontrada.");
+        return;
+      }
+
+      console.log("Plantas encontradas:", response.data);
+    } catch (error) {
+      console.error("Erro ao buscar plantas:", error);
+      setLoading(false);
+    }
+  };
+
+  fetchPlantas();
+}, []);
+
+    
+
+  if (loading) {
+    return <p>Carregando plantas...</p>; 
+  }
 
   return (
     <>
@@ -18,23 +57,27 @@ function Plant() {
         <Link to="/add-plant"><Card.HomeButton>Adicionar Nova Planta</Card.HomeButton></Link>
       </Card.HomeHeader>
       <Card.HomeGrid>
-        {/* {plantData.map((plant) => (
-          <PlantCard key={plant.name} {...plant} />
-        ))} */}
+        {plantas.map((planta) => (
+          <PlantCard key={planta.nome} planta={planta} onClick={() => {}} />
+        ))}
         <AddPlantCard />
       </Card.HomeGrid>
     </>
   );
 }
 
-export function PlantCard({ name, description, imageUrl }) {
+export function PlantCard({ planta }) {
+
   return (
     <Card.Card>
-      <Card.CardImage src={imageUrl} alt={`Foto da planta ${name}`} />
+      <Card.CardImage 
+        src={`http://localhost:3001/api${planta.imagem}`}
+        alt={`Imagem da planta ${planta.nome}`} 
+      />
       <Card.CardContent>
-        <Card.CardTitle>{name}</Card.CardTitle>
-        <Card.CardDescription>{description}</Card.CardDescription>
-        <Card.CardButton>Ver Detalhes</Card.CardButton>
+        <Card.CardTitle>{planta.nome}</Card.CardTitle>
+        <Card.CardDescription>{planta.descricao}</Card.CardDescription>
+        <Card.CardButton Link to={`/plant/${planta.id}`}>Ver Detalhes</Card.CardButton>
       </Card.CardContent>
     </Card.Card>
   );
@@ -50,5 +93,45 @@ export function AddPlantCard() {
     </Link>
   );
 }
+
+// export function apiFetchPlantas() {
+
+//   const [plantas, setPlantas] = useState([]); 
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//   const fetchPlantas = async () => {
+//     try {
+//       const token = localStorage.getItem("token");
+
+//       if (!token) {
+//         console.warn("Token não encontrado.");
+//         setLoading(false);
+//         return;
+//       }
+
+//       // Configura o header de autorização para as próximas requisições
+//       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+//       const response = await api.get("/api/plantas/my-plants");
+
+//       setPlantas(response.data);
+//       setLoading(false);
+
+//       if (response.data.length === 0) {
+//         console.log("Nenhuma planta encontrada.");
+//         return;
+//       }
+
+//       console.log("Plantas encontradas:", response.data);
+//     } catch (error) {
+//       console.error("Erro ao buscar plantas:", error);
+//       setLoading(false);
+//     }
+//   };
+
+//   fetchPlantas();
+// }, []);
+// }
 
 export default Plant;

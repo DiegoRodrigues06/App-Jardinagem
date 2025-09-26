@@ -18,7 +18,6 @@ app.use(cors());
 app.use(express.json());
 
 // rotas 
-app.use("/", userRoutes);
 app.use("/users", userRoutes);
 
 app.use("/api/especies", especieRoutes);
