@@ -80,14 +80,14 @@ const CardButton = styled.button`
   border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
-  background-color: #4338ca;
+  background-color: #50bd70ff;
   color: white;
-  border: 1px solid #4338ca;
+  border: 1px solid #50bd70ff;
   font-family: 'Poppins', sans-serif;
   transition: background-color 0.2s ease-in-out;
 
   &:hover {
-    background-color: #3730a3;
+    background-color: #3e9157ff;
   }
 `;
 

@@ -30,9 +30,13 @@ export const getPlantasUsuario = async (req, res) => {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ error: "Usuário não autenticado" });
     }
+
     const plantas = await prisma.planta.findMany({
       where: {
         userId: req.user.id,
+      },
+      include: { // função do prisma, funciona como um join
+        especie: true,  // vai trazer os dados da especie (nome, descricao, imagem, etc.)
       },
     });
 
