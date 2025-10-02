@@ -2,6 +2,9 @@ import { useState } from "react";
 import * as Main from "./styles/Home.js";
 import { Link } from "react-router-dom"
 import Plant from "../components/Card.jsx";
+import api from "../services/api";
+import { useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const HomeIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
@@ -20,22 +23,84 @@ const MenuIcon = () => (
 );
 
 function Navbar({ isOpen }) {
+  /**
+   * Tive problemas na função importada de functions,
+   * estava sendo executava SEMPRE que uma micro mudança fosse feita na pagina
+   * então refiz a função dentro do proprio arquivo, e resolveu.
+   * possivel solução seria transformar a função em um context global pra envolver o site
+   * mas iria ter que refazer MUITA coisa, então deixa quieto
+   */
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+
+    const fetchUserData = async () => {
+
+      try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          console.warn("Token não encontrado.");
+          return;
+        }
+
+        const decodedToken = jwtDecode(token);
+        const id = decodedToken?.id; // decodifica o token e compara o id do usuario pra saber se ele esta logado
+
+        if (!id) {
+          console.warn("userId não encontrado no token.");
+          return;
+        }
+
+        api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+        const response = await api.get(`/users/${id}`);
+
+        if (!response.data) {
+          console.log("Nenhum dado do usuário logado.");
+          return;
+        }
+
+        setUserData(response.data);
+        console.log("Dados do usuário logado:", response.data);
+      } catch (error) {
+        console.error("Erro ao buscar dados do usuário:", error);
+      }
+    };
+
+    fetchUserData();
+
+  }, []);
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    setUserData(null);
+    window.location.reload(); // recarrega a página
+  }
+
   return (
     <Main.NavbarContainer isOpen={isOpen}>
       <Main.LogoContainer>
         <Main.LogoTitle>Jardim App</Main.LogoTitle>
       </Main.LogoContainer>
       <Main.NavLinks>
-
         <Main.NavLink to="/" className="active"><HomeIcon /> Minhas Plantas</Main.NavLink>
         <Main.NavLink to="/documentation"><BookIcon /> Documentação</Main.NavLink>
         <Main.NavLink to="/support"><HelpIcon /> Suporte</Main.NavLink>
         <Main.NavLink to="https://github.com/DiegoRodrigues06/App-Jardinagem" target="_blank"><GithubIcon /> Github</Main.NavLink>
-        
       </Main.NavLinks>
       <Main.UserActions>
-        <Link to="/register"><Main.Button>Sign up</Main.Button></Link>
-        <Link to="/Login"><Main.Button primary>Login</Main.Button></Link>
+        {userData ? (
+          <>
+            <Link><Main.Button style={{ color: '#535353ff' }}>{`Usuário: ${userData?.nome}`}</Main.Button></Link>
+            <Link><Main.Button primary onClick={handleLogout}>Logout</Main.Button></Link>
+          </>
+        ) : (
+          <>
+            <Link to="/register"><Main.Button>Registrar-se</Main.Button></Link>
+            <Link to="/Login"><Main.Button primary>Login</Main.Button></Link>
+          </>
+        )}
       </Main.UserActions>
     </Main.NavbarContainer>
   );
@@ -50,7 +115,7 @@ function Home() {
       <Main.AppContainer>
         <Main.MenuButton onClick={toggleMenu}><MenuIcon /></Main.MenuButton>
         {isMenuOpen && <Main.Overlay onClick={toggleMenu} />}
-        <Navbar isOpen={isMenuOpen} />
+        <Navbar isOpen={isMenuOpen}/>
         <Main.MainContent>
           <Plant></Plant>
         </Main.MainContent>

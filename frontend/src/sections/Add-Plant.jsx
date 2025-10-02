@@ -158,13 +158,9 @@ export default function AddPlant() {
         )}
 
         
-        <Add.Label>
-          <Add.RadioInput type="radio" name="nickname" value="nickname" />
-          Apelido
-        </Add.Label>
         <Add.TextField
           type="text"
-          placeholder="Digite o apelido da planta"
+          placeholder="Como vai se chamar sua planta?"
           value={apelido}
           onChange={(e) => setApelido(e.target.value)}
         />

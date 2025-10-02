@@ -1,7 +1,7 @@
 import * as Log from "./styles/Login.js";
 import { useState } from "react";
-import api from "../services/api.js";
 import { useNavigate } from "react-router-dom";
+import api from "../services/api.js";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -21,12 +21,14 @@ function Login() {
     // salvar token no localStorage
     localStorage.setItem("token", res.data.token);
 
-    // opcional: salvar também os dados do user
+    // salva dados do usuario
     localStorage.setItem("user", JSON.stringify(res.data.user));
 
-    setMessage("Login OK! Bem-vindo " + res.data.user.nome);
+    setMessage("Bem-vindo " + res.data.user.nome);
 
-    navigate("/"); // redireciona para home apos login
+    setTimeout(() => { // delay de 2 segundos
+        navigate("/"); // Redireciona para home após o login
+      }, 2000);
 
   } catch (err) {
     setMessage(err.response?.data?.error || "Erro ao logar");
@@ -59,8 +61,8 @@ function Login() {
         {message && <p style={{ marginTop: "15px" }}>{message}</p>}
 
         <div>
-          <Log.StyledLink to="/register" style={{position: "absolute",marginLeft: "90px"}}>Já tem uma conta?</Log.StyledLink>
-          <Log.StyledLink to="/">VOLTAR</Log.StyledLink>
+          <Log.StyledLink to="/register" style={{position: "absolute",marginLeft: "75px"}}>Já tem uma conta?</Log.StyledLink>
+          <Log.StyledLink to="/">Voltar</Log.StyledLink>
         </div>
       </Log.LoginBox>
     </Log.PageContainer>

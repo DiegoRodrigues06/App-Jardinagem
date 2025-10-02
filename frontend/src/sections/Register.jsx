@@ -23,7 +23,10 @@ function Register() {
         senha,
       });
       setMessage("Usuário criado: " + res.data.nome);
-      navigate("/login");
+      
+      setTimeout(() => {
+        navigate("/Login");
+      }, 2000);
 
     } catch (err) {
       setMessage(err.response?.data?.error || "Erro ao registrar");
@@ -33,7 +36,7 @@ function Register() {
   return (
     <Reg.PageContainer>
       <Reg.LoginBox>
-        <Reg.Title>Sign Up</Reg.Title>
+        <Reg.Title>Registrar-se</Reg.Title>
 
         {/* Formulário de registro */}
         <Reg.Form onSubmit={handleRegister}>

@@ -74,7 +74,7 @@ const RadioInput = styled.input`
 `;
 
 const TextField = styled.input`
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
   border-bottom: 2px solid ${colors.border};
   border-top: none;
   border-left: none;
