@@ -9,6 +9,7 @@ import Home from "../sections/Home";
 import Login from "../sections/Login";
 import Register from "../sections/Register";
 import AddPlant from "../sections/Add-Plant.jsx";
+import PlantDetailsPage from "../sections/Details.jsx";
 
 
 // muitos problemas nisso aq kkk, tentando arrumar
@@ -35,6 +36,7 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/add-plant" element={<AddPlant />} />
+      <Route path="/details/:id" element={<PlantDetailsPage />} />
     </Routes>
   );
 }
