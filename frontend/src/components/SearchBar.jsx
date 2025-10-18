@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-const SearchIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>;
+const SearchIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>;
 
 const SearchContainer = styled.div`
   display: flex;
@@ -62,18 +62,18 @@ export const ResultItem = styled.li`
   }
 `;
 
-export default function SearchBar ({ value, onChange }) {
+export default function SearchBar({ value, onChange }) {
     return (
         <>
-        <SearchContainer>
-            <SearchIcon />
-            <SearchInput
-            type="text"
-            placeholder="Pesquisar"
-            value={value}
-            onChange={onChange}
-             />
-        </SearchContainer>
+            <SearchContainer>
+                <SearchIcon />
+                <SearchInput
+                    type="text"
+                    placeholder="Pesquisar"
+                    value={value}
+                    onChange={onChange}
+                />
+            </SearchContainer>
         </>
     )
 }

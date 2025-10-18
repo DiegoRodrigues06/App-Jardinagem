@@ -19,17 +19,18 @@ model User {
 
 model Especie {
   id        Int       @id @default(autoincrement())
-  nome      String    
+  nome      String   
+  resumo    String? 
   descricao String?
-  cuidados  String?   // infos fixas que você guarda na sua própria API
-  imagem    String?   // guardar imagem por url
+  cuidados  String?   
+  imagem    String?  // o ? indica que não é not null
   plantas   Planta[]
-  rotinas   Rotina[]  // <- cada espécie terá várias rotinas (interno, externo)
+  rotinas   Rotina[]  
 }
 
 model Planta {
   id        Int       @id @default(autoincrement())
-  apelido   String?   // tipo "Rosa da varanda"
+  apelido   String?   
   criadoEm  DateTime  @default(now())
   ambiente  String
   userId    Int
@@ -39,19 +40,20 @@ model Planta {
 }
 
 model Rotina {
-  id         Int      @id @default(autoincrement())
-  descricao  String?  
-  frequencia String? 
-  horario    String?  
-  ambiente   String   // "interno" ou "externo"
-  especieId  Int
-  especie    Especie  @relation(fields: [especieId], references: [id])
+  id          Int      @id @default(autoincrement())
+  tipoCuidado String   
+  frequencia  String?
+  observacao  String?
+  ambiente    String   
+  especieId   Int
+  especie     Especie  @relation(fields: [especieId], references: [id])
 }
+
 
 model ChatIA {
   id        Int      @id @default(autoincrement())
   mensagem  String
-  imagemUrl String?  // pra armazenar fotos temporárias do usuário
+  imagemUrl String?  
   criadoEm  DateTime @default(now())
   userId    Int
   user      User     @relation(fields: [userId], references: [id])

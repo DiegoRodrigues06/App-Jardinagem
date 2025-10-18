@@ -5,10 +5,10 @@ import GlobalStyle from './assets/styles/GlobalStyles/GlobalStyles'
 import AppRoutes from './routes/Routes'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <GlobalStyle />
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
-  </StrictMode>,
+    <StrictMode>
+        <GlobalStyle />
+        <BrowserRouter>
+            <AppRoutes />
+        </BrowserRouter>
+    </StrictMode>,
 )

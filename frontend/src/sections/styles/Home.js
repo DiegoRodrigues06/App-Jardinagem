@@ -2,15 +2,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const colors = {
-  primary: "#c7e0be", 
-  primaryDark: "#b4d6a9", 
-  background: "#a5c8ca",
-  background2: "#e3e5d7", 
-  formBackground: "#ffffff", 
-  text: "#333333", 
-  textLight: "#7f8c8d", 
-  border: "#bdc3c7", 
-  white: "#fff"
+    primary: "#c7e0be",
+    primaryDark: "#b4d6a9",
+    background: "#a5c8ca",
+    background2: "#e3e5d7",
+    formBackground: "#ffffff",
+    text: "#333333",
+    textLight: "#7f8c8d",
+    border: "#bdc3c7",
+    white: "#fff"
 };
 
 const AppContainer = styled.div`
@@ -36,7 +36,7 @@ const MenuButton = styled.button`
   position: fixed;
   top: 1rem;
   left: 1rem;
-  z-index: 30;
+  z-index: 50;
   background-color: white;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
@@ -133,7 +133,7 @@ const UserActions = styled.div`
   margin-top: auto;
   border-top: 1px solid #e2e8f0;
 `;
-  
+
 const Button = styled.button`
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
@@ -155,14 +155,16 @@ const Button = styled.button`
 
 
 
-export { AppContainer, 
-         MainContent, 
-         MenuButton, 
-         Overlay, 
-         NavbarContainer, 
-         LogoContainer, 
-         LogoTitle, 
-         NavLinks, 
-         NavLink, 
-         UserActions, 
-         Button };
+export {
+    AppContainer,
+    MainContent,
+    MenuButton,
+    Overlay,
+    NavbarContainer,
+    LogoContainer,
+    LogoTitle,
+    NavLinks,
+    NavLink,
+    UserActions,
+    Button
+};

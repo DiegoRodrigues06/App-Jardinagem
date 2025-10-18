@@ -143,6 +143,7 @@ export const TaskCardHeader = styled.div`
 export const TaskCardTitle = styled.h3`
   font-size: 1.25rem;
   margin: 0;
+  color: #1c1c1dff;
 `;
 
 export const TaskCardDetail = styled.span`
@@ -177,8 +178,8 @@ export const AboutText = styled.p`
 `;
 
 export const AiSection = styled.section`
-  background-color: #eef2ff;
-  border: 1px solid #c7d2fe;
+  background-color: #eefff2ff;
+  border: 1px solid #a0cab6ff;
   border-radius: 1rem;
   padding: 2rem;
   text-align: center;
@@ -192,13 +193,13 @@ export const AiTitle = styled.h2`
 
 export const AiText = styled.p`
   margin-bottom: 1.5rem;
-  color: #4338ca;
+  color: #53634dff;
 `;
 
 export const AiButton = styled.a`
   padding: 0.8rem 2rem;
   border-radius: 999px;
-  background-color: #4338ca;
+  background-color: #5b922eff;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -207,7 +208,7 @@ export const AiButton = styled.a`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #3730a3;
+    background-color: #3e641fff;
   }
 `;
 

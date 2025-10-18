@@ -36,7 +36,11 @@ export const getPlantasUsuario = async (req, res) => {
         userId: req.user.id,
       },
       include: { // função do prisma, funciona como um join
-        especie: true,  // vai trazer os dados da especie (nome, descricao, imagem, etc.)
+        especie: { // vai trazer os dados da especie (nome, descricao, imagem, etc.)
+          include: {
+            rotinas: true,
+          }
+        } 
       },
     });
 

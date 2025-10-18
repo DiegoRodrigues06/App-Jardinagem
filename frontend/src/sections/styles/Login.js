@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const colors = {
-  primary: "#c7e0be", // Azul principal
-  primaryDark: "#b4d6a9", // Azul para hover
-  background: "#a5c8ca",
-  background2: "#e3e5d7", // Fundo da página (cinza claro)
-  formBackground: "#ffffff", // Fundo do formulário (branco)
-  text: "#333333", // Cor principal do texto
-  textLight: "#7f8c8d", // Cor de texto sutil
-  border: "#bdc3c7", // Cor da borda
+    primary: "#c7e0be", // Azul principal
+    primaryDark: "#b4d6a9", // Azul para hover
+    background: "#a5c8ca",
+    background2: "#e3e5d7", // Fundo da página (cinza claro)
+    formBackground: "#ffffff", // Fundo do formulário (branco)
+    text: "#333333", // Cor principal do texto
+    textLight: "#7f8c8d", // Cor de texto sutil
+    border: "#bdc3c7", // Cor da borda
 };
 
 // Container principal que centraliza tudo na página
@@ -97,11 +97,11 @@ export const StyledLink = styled(Link)`
 `;
 
 export default {
-  PageContainer,
-  LoginBox,
-  Title,
-  Form,
-  Input,
-  Button,
-  StyledLink
+    PageContainer,
+    LoginBox,
+    Title,
+    Form,
+    Input,
+    Button,
+    StyledLink
 };
