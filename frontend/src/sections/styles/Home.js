@@ -36,7 +36,7 @@ const MenuButton = styled.button`
   position: fixed;
   top: 1rem;
   left: 1rem;
-  z-index: 50;
+  z-index: 30;
   background-color: white;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;

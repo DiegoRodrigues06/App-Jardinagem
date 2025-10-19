@@ -72,62 +72,62 @@ function Navbar() {
     }
 
     return (
-        <Main.NavbarContainer isOpen={isOpen}>
-            {/* Botão do menu */}
+        <>
+            {/* Botão fora da navbar */}
             <Main.MenuButton onClick={toggleMenu}>
                 <MenuIcon />
             </Main.MenuButton>
 
-            {/* Overlay para fechar o menu em telas pequenas */}
+            {/* Overlay para fechar menu */}
             {isOpen && <Main.Overlay onClick={toggleMenu} />}
 
-            {/* Logo */}
-            <Main.LogoContainer>
-                <Main.LogoTitle>Jardim App</Main.LogoTitle>
-            </Main.LogoContainer>
+            {/* Navbar lateral */}
+            <Main.NavbarContainer isOpen={isOpen}>
+                <Main.LogoContainer>
+                    <Main.LogoTitle>Jardim App</Main.LogoTitle>
+                </Main.LogoContainer>
 
-            {/* Links principais */}
-            <Main.NavLinks>
-                <Main.NavLink to="/" className="active">
-                    <HomeIcon /> Minhas Plantas
-                </Main.NavLink>
-                <Main.NavLink to="/documentation">
-                    <BookIcon /> Documentação
-                </Main.NavLink>
-                <Main.NavLink to="/support">
-                    <HelpIcon /> Suporte
-                </Main.NavLink>
-                <Main.NavLink
-                    to="https://github.com/DiegoRodrigues06/App-Jardinagem"
-                    target="_blank"
-                >
-                    <GithubIcon /> Github
-                </Main.NavLink>
-            </Main.NavLinks>
+                <Main.NavLinks>
+                    <Main.NavLink to="/" className="active">
+                        <HomeIcon /> Minhas Plantas
+                    </Main.NavLink>
+                    <Main.NavLink to="/documentation">
+                        <BookIcon /> Documentação
+                    </Main.NavLink>
+                    <Main.NavLink to="/support">
+                        <HelpIcon /> Suporte
+                    </Main.NavLink>
+                    <Main.NavLink
+                        to="https://github.com/DiegoRodrigues06/App-Jardinagem"
+                        target="_blank"
+                    >
+                        <GithubIcon /> Github
+                    </Main.NavLink>
+                </Main.NavLinks>
 
-            {/* Botões de usuário */}
-            <Main.UserActions>
-                {userData ? (
-                    <>
-                        <Main.Button style={{ color: "#535353ff" }}>
-                            Usuário: {userData.nome}
-                        </Main.Button>
-                        <Main.Button primary onClick={handleLogout}>
-                            Logout
-                        </Main.Button>
-                    </>
-                ) : (
-                    <>
-                        <Link to="/register">
-                            <Main.Button>Registrar-se</Main.Button>
-                        </Link>
-                        <Link to="/Login">
-                            <Main.Button primary>Login</Main.Button>
-                        </Link>
-                    </>
-                )}
-            </Main.UserActions>
-        </Main.NavbarContainer>
+                <Main.UserActions>
+                    {userData ? (
+                        <>
+                            <Main.Button style={{ color: "#535353ff" }}>
+                                Usuário: {userData.nome}
+                            </Main.Button>
+                            <Main.Button primary onClick={handleLogout}>
+                                Logout
+                            </Main.Button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/register">
+                                <Main.Button>Registrar-se</Main.Button>
+                            </Link>
+                            <Link to="/login">
+                                <Main.Button primary>Login</Main.Button>
+                            </Link>
+                        </>
+                    )}
+                </Main.UserActions>
+            </Main.NavbarContainer>
+        </>
     );
 }
 

@@ -1,5 +1,7 @@
 import * as Detail from "./styles/Details"
-import { useParams } from "react-router-dom";
+
+import api from "../services/api";
+import { useParams, useNavigate } from "react-router-dom";
 
 import MyPlantsFetcher from "../functions/getMyPlants";
 import Navbar from "../components/Navbar";
@@ -28,11 +30,13 @@ const iconMap = {
     Wind: <WindIcon />,
 };
 
-// --- COMPONENTE PRINCIPAL ---
 export default function PlantDetailsPage() {
 
+    // ---- pegar planta ----
     const { id } = useParams();
     const { plantas, loading } = MyPlantsFetcher();
+
+    const navigate = useNavigate();
 
     if (loading) {
         return <p>Carregando...</p>;
@@ -47,6 +51,30 @@ export default function PlantDetailsPage() {
         month: 'long',
         year: 'numeric'
     });
+
+    //---- função excluir ----
+    async function handleDelete() {
+    const confirmar = window.confirm("Tem certeza que deseja excluir esta planta?"); 
+        if (!confirmar) return;
+
+        try {
+            const token = localStorage.getItem("token");
+            if (!token) {
+            alert("Usuário não autenticado.");
+            return;
+            }
+
+            api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+            await api.delete(`/api/plantas/my-plants/delete/${id}`);
+
+            alert("Planta excluída com sucesso!");
+            navigate("/"); 
+        } catch (err) {
+            console.error("Erro ao excluir planta:", err);
+            alert("Erro ao excluir a planta. Tente novamente.");
+        }
+    }
 
     return (
         <>
@@ -63,7 +91,7 @@ export default function PlantDetailsPage() {
                             <Detail.HeaderData>Adicionada em {dataFormatada}</Detail.HeaderData>
                             <Detail.HeaderActions>
                                 <Detail.HeaderButton className="edit"><EditIcon />Editar</Detail.HeaderButton>
-                                <Detail.HeaderButton className="delete"><TrashIcon />Excluir</Detail.HeaderButton>
+                                <Detail.HeaderButton className="delete" onClick={handleDelete}><TrashIcon />Excluir</Detail.HeaderButton>
                             </Detail.HeaderActions>
                         </Detail.HeaderInfo>
                     </Detail.Header>
