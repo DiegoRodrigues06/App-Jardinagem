@@ -1,10 +1,11 @@
 import * as Detail from "./styles/Details"
 
 import api from "../services/api";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 import MyPlantsFetcher from "../functions/getMyPlants";
 import Navbar from "../components/Navbar";
+import AIChat from "../components/AIChat";
 
 // --- Ícones SVG ---
 // Definir ícones aqui facilita a customização e evita dependências externas.
@@ -139,10 +140,12 @@ export default function PlantDetailsPage() {
                         <Detail.AiText>
                             Tire dúvidas sobre sua {planta.especie.nome} com nosso assistente de IA.
                         </Detail.AiText>
-                        <Detail.AiButton href="#">Perguntar à IA</Detail.AiButton>
+                       <Detail.AiButton>Perguntar à IA</Detail.AiButton>
                     </Detail.AiSection>
 
                 </Detail.Container>
+
+                 <AIChat></AIChat>           
             </Detail.Body>
         </>
     );

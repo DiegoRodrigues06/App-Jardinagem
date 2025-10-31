@@ -43,6 +43,8 @@ const MenuButton = styled.button`
   padding: 0.5rem;
   cursor: pointer;
   color: #475569;
+  transition: transform 0.3s ease-in-out; 
+  transform: ${({ isOpen }) => (isOpen ? "translateX(250px)" : "translateX(0)")}; 
 
   @media (min-width: 1024px) {
     display: none;

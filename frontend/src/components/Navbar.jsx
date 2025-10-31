@@ -60,7 +60,7 @@ function Navbar() {
             } catch (error) {
                 console.error("Erro ao buscar dados do usuário:", error);
             }
-        };
+        }; 
 
         fetchUserData();
     }, []);
@@ -81,7 +81,7 @@ function Navbar() {
             {/* Overlay para fechar menu */}
             {isOpen && <Main.Overlay onClick={toggleMenu} />}
 
-            {/* Navbar lateral */}
+            {/* Navbar lateral */} 
             <Main.NavbarContainer isOpen={isOpen}>
                 <Main.LogoContainer>
                     <Main.LogoTitle>Jardim App</Main.LogoTitle>
