@@ -140,7 +140,8 @@ export default function PlantDetailsPage() {
                         <Detail.AiText>
                             Tire dúvidas sobre sua {planta.especie.nome} com nosso assistente de IA.
                         </Detail.AiText>
-                       <Detail.AiButton>Perguntar à IA</Detail.AiButton>
+                        <Detail.AiText>Clicar no botão à direita da tela para começar.</Detail.AiText>
+                       {/* <Detail.AiButton id="abrir-chat">Perguntar à IA</Detail.AiButton> */}
                     </Detail.AiSection>
 
                 </Detail.Container>

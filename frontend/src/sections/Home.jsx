@@ -62,7 +62,7 @@ function Navbar({ isOpen }) {
                 }
 
                 setUserData(response.data);
-                console.log("Dados do usuário logado:", response.data);
+                console.log("Usuário logado");
             } catch (error) {
                 console.error("Erro ao buscar dados do usuário:", error);
             }

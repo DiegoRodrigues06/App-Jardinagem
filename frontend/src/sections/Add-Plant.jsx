@@ -39,7 +39,7 @@ export default function AddPlant() {
             .then((response) => {
                 setPlantas(response.data);
                 setLoading(false);
-                console.log("Plantas encontradas:", response.data);
+                // em caso de bug na função de busca, deve ser examinada essa função
             })
             .catch((error) => {
                 console.error("Erro ao buscar plantas:", error); // vai retornar erro se der problema na api
@@ -105,7 +105,7 @@ export default function AddPlant() {
             });
 
             setMessage("Planta cadastrada com sucesso!");
-            console.log("Resposta:", res.data);
+            console.log("Resposta:", res.status);
 
             // resetar formulário
             setApelido("");

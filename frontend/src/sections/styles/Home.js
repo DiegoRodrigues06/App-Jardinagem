@@ -17,6 +17,7 @@ const AppContainer = styled.div`
   display: flex;
   width: 100%;
   min-height: 100vh;
+  background-color: #fcfbf8;
 `;
 
 const MainContent = styled.main`
@@ -25,7 +26,7 @@ const MainContent = styled.main`
   padding-top: 5rem;
   transition: margin-left 0.3s ease-in-out;
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1400px) {
     margin-left: 250px;
     padding: 3rem;
     width: calc(100% - 250px);
@@ -46,7 +47,7 @@ const MenuButton = styled.button`
   transition: transform 0.3s ease-in-out; 
   transform: ${({ isOpen }) => (isOpen ? "translateX(250px)" : "translateX(0)")}; 
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1400px) {
     display: none;
   }
 `;
@@ -77,7 +78,7 @@ const NavbarContainer = styled.aside`
   transition: transform 0.3s ease-in-out;
   transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(-100%)")};
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1400px) {
     transform: translateX(0);
   }
 `;

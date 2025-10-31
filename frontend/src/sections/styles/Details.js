@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Body = styled.div`
   font-family: 'Inter', sans-serif;
-  background-color: #fdfcf7ff;
+  background-color: #fcfbf8;
   color: #334155;
   margin: 0;
   padding: 2rem;
@@ -123,7 +123,7 @@ export const RoutineGrid = styled.div`
 `;
 
 export const TaskCard = styled.div`
-  background-color: #fffff8ff;
+  background-color: #fffffcff;
   border-radius: 0.75rem;
   border: 1px solid #e2e8f0;
   padding: 1.5rem;
@@ -149,7 +149,7 @@ export const TaskCardTitle = styled.h3`
 export const TaskCardDetail = styled.span`
   font-size: 0.9rem;
   color: #475569;
-  background-color: #f1f0eaff;
+  background-color: #eef1efff;
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
   align-self: flex-start;

@@ -23,7 +23,10 @@ export default function MyPlantsFetcher() {
 
                 const response = await api.get("/api/plantas/my-plants");
 
-                console.log("Resposta da API:", response);
+                if(response.status !== 200){
+                    console.log("Resposta da API:", response);
+                }
+                console.log("Dados das plantas encontrados.");
 
                 setPlantas(response.data);
                 setLoading(false);
@@ -33,7 +36,7 @@ export default function MyPlantsFetcher() {
                     return;
                 }
 
-                console.log("Plantas encontradas:", response.data);
+                console.log("Plantas encontradas");
             } catch (error) {
                 console.error("Erro ao buscar plantas:", error);
                 setLoading(false);
