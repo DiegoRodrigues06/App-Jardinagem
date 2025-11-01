@@ -93,7 +93,7 @@ App-Jardinagem/
 
 ### Clonar o repositório
 ```bash
-git clone https://github.com/seuusuario/App-Jardinagem-Muito-Brabo-2000.git
+git clone https://github.com/DiegoRodrigues06/App-Jardinagem
 cd App-Jardinagem-Muito-Brabo-2000
 ````
 
