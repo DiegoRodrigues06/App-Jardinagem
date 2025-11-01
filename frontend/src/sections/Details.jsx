@@ -73,10 +73,17 @@ export default function PlantDetailsPage() {
             navigate("/"); 
         } catch (err) {
             console.error("Erro ao excluir planta:", err);
-            alert("Erro ao excluir a planta. Tente novamente.");
+            alert("Erro ao excluir a planta.");
         }
     }
 
+    // ---- função editar ----
+    /*
+    funcção descartada por enquanto pois era pouco prática
+    e piorava significativamente a experiência de usuário.
+    talvez no futuro eu implemente de forma mais dinâmica.
+    */
+   
     return (
         <>
             <Detail.Body>
@@ -87,11 +94,16 @@ export default function PlantDetailsPage() {
                     <Detail.Header>
                         <Detail.HeaderImage src={`http://localhost:3001/api${planta.especie.imagem}`} alt={`Foto de ${planta.apelido}`} />
                         <Detail.HeaderInfo>
-                            <Detail.HeaderApelido>{planta.apelido}</Detail.HeaderApelido>
+                            <Detail.HeaderApelido>
+                                {planta.apelido
+                                ? `${planta.apelido}`
+                                : `${planta.especie.nome}`}
+                            </Detail.HeaderApelido>
+
                             <Detail.HeaderEspecie>{planta.especie.nome}</Detail.HeaderEspecie>
                             <Detail.HeaderData>Adicionada em {dataFormatada}</Detail.HeaderData>
                             <Detail.HeaderActions>
-                                <Detail.HeaderButton className="edit"><EditIcon />Editar</Detail.HeaderButton>
+                                {/* <Detail.HeaderButton className="edit"><EditIcon />Editar</Detail.HeaderButton> */}
                                 <Detail.HeaderButton className="delete" onClick={handleDelete}><TrashIcon />Excluir</Detail.HeaderButton>
                             </Detail.HeaderActions>
                         </Detail.HeaderInfo>

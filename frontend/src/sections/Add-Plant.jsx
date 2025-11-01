@@ -160,7 +160,7 @@ export default function AddPlant() {
 
                 <Add.TextField
                     type="text"
-                    placeholder="Como vai se chamar sua planta?"
+                    placeholder="Opcional*   Como vai se chamar sua planta?"
                     value={apelido}
                     onChange={(e) => setApelido(e.target.value)}
                 />

@@ -37,7 +37,12 @@ export function PlantCard({ planta }) {
                 alt={`Imagem da planta ${planta.especie.nome}`}
             />
             <Card.CardContent>
-                <Card.CardTitle>{`${planta.apelido} (${planta.especie.nome})`}</Card.CardTitle>
+                <Card.CardTitle>
+                    {planta.apelido
+                    ? `${planta.apelido} (${planta.especie.nome})`
+                    : `${planta.especie.nome}`}
+                </Card.CardTitle>
+
                 <Card.CardDescription>{planta.especie.resumo}</Card.CardDescription>
 
                 <Link to={`/details/${planta.id}`}>
