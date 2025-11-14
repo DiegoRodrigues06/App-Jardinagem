@@ -43,7 +43,7 @@ Desenvolvido com **React (frontend)** e **Node.js + Prisma (backend)**, utilizan
 
 ## Estrutura do Projeto
 
-```
+```bash
 
 App-Jardinagem/
 ├── backend/
