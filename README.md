@@ -33,14 +33,21 @@ Desenvolvido com **React (frontend)** e **Node.js + Prisma (backend)**, utilizan
 - Interface responsiva e moderna, focada em UX.
 
 ---
+### Interface de Usuário
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/2135c9b4-c0a9-4405-8666-bf0f91fd78a5" /> 
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/0721cec8-9271-4b62-b5ae-697b75528a61" />
+<img width="1904" height="1079" alt="image" src="https://github.com/user-attachments/assets/29006271-0b1b-4519-b25f-3b8ed86e1a5a" />
+<img width="1905" height="1079" alt="image" src="https://github.com/user-attachments/assets/0c8406db-aae9-4be2-ab7e-f2769fc8073f" />
+
+---
 
 ## Estrutura do Projeto
 
-```
+```bash
 
 App-Jardinagem/
 ├── backend/
-│   ├── prisma/              # Schema do banco e migrations
+│   ├── prisma/              # Schema, Seed e Migrations do banco
 │   ├── src/
 │   │   ├── controllers/     # Lógica das rotas
 │   │   ├── routes/          # Definição das rotas da API
