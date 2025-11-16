@@ -88,13 +88,13 @@ function Navbar() {
                 </Main.LogoContainer>
 
                 <Main.NavLinks>
-                    <Main.NavLink to="/" className="active">
+                    <Main.NavLink to="/" end>
                         <HomeIcon /> Minhas Plantas
                     </Main.NavLink>
-                    <Main.NavLink to="/documentation">
+                    <Main.NavLink to="/documentation" className="active">
                         <BookIcon /> Documentação
                     </Main.NavLink>
-                    <Main.NavLink to="/support">
+                    <Main.NavLink to="/support" end>
                         <HelpIcon /> Suporte
                     </Main.NavLink>
                     <Main.NavLink

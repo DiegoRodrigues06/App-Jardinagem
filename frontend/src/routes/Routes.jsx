@@ -7,6 +7,7 @@ import Navbar from '../sections/Home.jsx';
 
 import Home from "../sections/Home";
 import Login from "../sections/Login";
+import DocumentationPage from "../sections/Documentation.jsx";
 import Register from "../sections/Register";
 import AddPlant from "../sections/Add-Plant.jsx";
 import PlantDetailsPage from "../sections/Details.jsx";
@@ -37,6 +38,7 @@ function AppRoutes() {
       <Route path="/register" element={<Register />} />
       <Route path="/add-plant" element={<AddPlant />} />
       <Route path="/details/:id" element={<PlantDetailsPage />} />
+      <Route path="/documentation" element={<DocumentationPage />}></Route>
     </Routes>
   );
 }

@@ -1,6 +1,6 @@
 // icone de 3 barrinha para menu
 
-import { MenuIcon, Bar } from "../assets/styles/IconTab";
+import { MenuIcon, Bar } from "./styles/IconTab";
 
 const Icon = ({ onClick }) => {
     return (

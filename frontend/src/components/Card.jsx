@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import MyPlantsFetcher from "../functions/getMyPlants.jsx";
 
 
-import * as Card from "../assets/styles/Card.js";
+import * as Card from "./styles/Card.js";
 
 
 function Plant() {
